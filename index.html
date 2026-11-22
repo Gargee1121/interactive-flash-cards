@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recall.dev — CS Engineering Flashcards</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://googleapis.com">
+  <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="noise-overlay"></div>
+
+  <main class="workspace">
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <span class="brand-name">recall<span class="brand-ext">.dev</span></span>
+        <span class="version-tag">v2.0</span>
+      </div>
+
+      <div class="telemetry-bar" aria-live="polite">
+        <div class="telemetry-item">
+          <span class="t-label">STREAK</span>
+          <span id="streak-val" class="t-value">0x</span>
+        </div>
+        <div class="divider"></div>
+        <div class="telemetry-item">
+          <span class="t-label">SCORE</span>
+          <span id="score-val" class="t-value">0</span>
+        </div>
+        <div class="divider"></div>
+        <div class="telemetry-item">
+          <span class="t-label">BEST</span>
+          <span id="best-val" class="t-value">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Topic Filter Bar -->
+    <nav class="filter-bar" aria-label="Topic Filter">
+      <button class="filter-chip active" data-topic="All">All Modules</button>
+      <button class="filter-chip" data-topic="DSA">DSA</button>
+      <button class="filter-chip" data-topic="OS">OS</button>
+      <button class="filter-chip" data-topic="DBMS">DBMS</button>
+      <button class="filter-chip" data-topic="Networks">Networks</button>
+    </nav>
+
+    <!-- Segmented Progress Indicator -->
+    <div id="segmented-progress" class="segmented-track" aria-hidden="true"></div>
+
+    <!-- Active Study Card -->
+    <section id="study-panel" class="panel">
+      <div class="panel-header">
+        <div class="meta-left">
+          <span id="card-index" class="mono-badge">01 / 05</span>
+          <span id="card-topic" class="topic-label">DSA</span>
+        </div>
+        <span class="shortcut-hint"><kbd>1</kbd>–<kbd>4</kbd> Select &nbsp;·&nbsp; <kbd>Enter</kbd> Next</span>
+      </div>
+
+      <h1 id="question-title" class="question-prompt">Initializing deck...</h1>
+
+      <div id="options-list" class="options-stack" role="radiogroup"></div>
+
+      <!-- Post-Answer Diagnostic Drawer -->
+      <footer id="diagnostic-drawer" class="diagnostic-drawer hidden">
+        <div class="diagnostic-content">
+          <div class="diagnostic-header">
+            <span id="status-indicator" class="status-pill">VERIFIED</span>
+            <span id="complexity-tag" class="mono-meta">Time: O(log n)</span>
+          </div>
+          <p id="explanation-text" class="explanation-copy"></p>
+        </div>
+        <button id="next-btn" class="action-btn">
+          Next Card <span class="arrow">→</span>
+        </button>
+      </footer>
+    </section>
+
+    <!-- Session Audit Report (End Screen) -->
+    <section id="audit-panel" class="panel audit-panel hidden">
+      <div class="audit-header">
+        <span class="mono-badge">SESSION AUDIT</span>
+        <h2>Performance Summary</h2>
+        <p id="audit-verdict" class="audit-sub"></p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-title">FINAL SCORE</span>
+          <span id="audit-score" class="kpi-number">0/0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-title">ACCURACY</span>
+          <span id="audit-accuracy" class="kpi-number">0%</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-title">MAX STREAK</span>
+          <span id="audit-streak" class="kpi-number">0x</span>
+        </div>
+      </div>
+
+      <div class="audit-list-wrapper">
+        <h3 class="section-label">QUESTION LOG</h3>
+        <ul id="audit-log" class="audit-log"></ul>
+      </div>
+
+      <div class="audit-actions">
+        <button id="restart-btn" class="action-btn full-width">Run New Session</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
